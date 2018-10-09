@@ -7,12 +7,16 @@ if($method == 'POST')
 	$json = json_decode($requestBody);
 	
 	$sec = $json->queryResult->parameters->sec;
-	$statetime = date("m/d/Y h:i:s A");
 	
+	$starttime = date("m/d/Y h:i:s A",time());
 	$endTime = date("m/d/Y h:i:s A",time()+intval($sec));
 	
-	if(date("m/d/Y h:i:s A")== $endTime)
-	{
+	
+	while($starttime!=$endTime)
+	{ $starttime = $starttime +1;
+	}
+	 
+	 
 			$opts = array();
 			$opts['http'] = array();
 			$opts['http']['method']="GET";
@@ -40,7 +44,7 @@ if($method == 'POST')
     	$response->fulfillmentText = $speech_data;
     	$response->source = "webhook";
 	echo json_encode($response);
-	}
+	
 }
 else
 {
