@@ -8,10 +8,10 @@ if($method == 'POST')
 	
 	$sec = $json->queryResult->parameters->sec;
 	$statetime = date("m/d/Y h:i:s A");
-	echo $statetime;
+	
 	$endTime = date("m/d/Y h:i:s A",time()+intval($sec));
-	echo $endTime;
-	if($endTime-date("m/d/Y h:i:s A",time())==0)
+	
+	if(date("m/d/Y h:i:s A")== $endTime)
 	{
 			$opts = array();
 			$opts['http'] = array();
