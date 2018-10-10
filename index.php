@@ -9,6 +9,7 @@ if($method == 'POST')
 	$sec = $json->queryResult->parameters->sec;
 	
 	$nexttick=time()+$sec;
+	echo $nexttick;
 	$active=true;
 
 	while ($active)
