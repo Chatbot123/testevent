@@ -8,16 +8,14 @@ if($method == 'POST')
 	
 	$sec = $json->queryResult->parameters->sec;
 	
-	$starttime = date("m/d/Y h:i:s A",time());
-	$endTime = date("m/d/Y h:i:s A",time()+intval($sec));
-	
-	
-	while($starttime!=$endTime)
-	{ $starttime = $starttime +1;
-	}
-	 
-	 
-			$opts = array();
+	$nexttick=time()+10;
+	$active=true;
+
+	while ($active)
+	{
+    	if (time()>=$nexttick)
+   	 {
+        		$opts = array();
 			$opts['http'] = array();
 			$opts['http']['method']="GET";
 			$opts['http']['header']="Accept-language: en\r\n"."Cookie: foo=bar\r\n";
@@ -29,6 +27,16 @@ if($method == 'POST')
 			
 			$file = json_decode($test_file);
 			$speech_data = $file->results->result->fulfillment->speech;
+       			// $nexttick=time()+10;
+		 $active=false;	
+    	}
+
+  	
+  
+}
+	 
+	 
+			
 			
 			
 			
